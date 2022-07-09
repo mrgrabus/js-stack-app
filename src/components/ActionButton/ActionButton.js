@@ -1,9 +1,9 @@
 import "./ActionButton.css";
 
-const ActionButton = ({ clickedWord, checkAnswer }) => {
+const ActionButton = ({ clickedWord, checkAnswer, continueHandler }) => {
   const checkAnswerHandler = () => {
       if(clickedWord === "") {
-
+        continueHandler();
       } else {
           checkAnswer();
       }  
