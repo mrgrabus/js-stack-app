@@ -11,9 +11,13 @@ import shuffle from "shuffle-array";
 const Home = () => {
   const ref = firebase.firestore().collection("sentences");
   const [sentences, setSentences] = useState([]);
+  const [sentenceState, setSentenceState] = useState({
+    currentSentence: 0,
+    successfullyGuessed: 0,
+    clickedWord: ""
+  })
   const [currentSentence, setCurrentSentence] = useState(0);
   const [successfullyGuessed, setSuccessfullyGuessed] = useState(0);
-  const [missedSentences, setMissedSentences] = useState({});
   const [clickedWord, setClickedWord] = useState("");
   const [popupState, setPopupState] = useState({
     visible: false,
@@ -21,8 +25,11 @@ const Home = () => {
   });
 
   const checkAnswer = () => {
-    if (clickedWord === sentences[currentSentence].correctWord) {
-      setSuccessfullyGuessed(successfullyGuessed + 1);
+    if (sentenceState.clickedWord === sentences[currentSentence].correctWord) {
+      setSuccessfullyGuessed(sentenceState.successfullyGuessed + 1);
+      if(sentenceState.successfullyGuessed === 9) {
+        alert("Congratulations! Game over");
+      }
       setPopupState({ visible: true, success: true });
     } else {
       setPopupState({ visible: true, success: false });
@@ -30,7 +37,8 @@ const Home = () => {
   };
 
   const continueHandler = () => {
-    setCurrentSentence(currentSentence + 1);
+    setSentences([...sentences, sentences[currentSentence]])
+    setSentenceState({...sentenceState, currentSentence: currentSentence + 1, clickedWord: ""});
     setClickedWord("");
     setPopupState({ visible: false, success: true });
   };
@@ -77,7 +85,11 @@ const Home = () => {
             setClickedWord={setClickedWord}
             clickedWord={clickedWord}
           />
-          <ActionButton clickedWord={clickedWord} checkAnswer={checkAnswer} />
+          <ActionButton
+            clickedWord={clickedWord}
+            checkAnswer={checkAnswer}
+            continueHandler={continueHandler}
+          />
         </div>
         {popupState.visible && (
           <PopupAlert
