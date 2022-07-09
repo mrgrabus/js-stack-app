@@ -1,9 +1,16 @@
 import Tooltip from "../Tooltip/Tooltip";
 
-import "./Sentence.css"
+import "./Sentence.css";
 import WordPlaceholder from "./WordPlaceholder";
 
-const EnglishSentence = ({ englishSentence, germanSentence, correctWord, englishCorrectWord, clickedWord }) => {
+const EnglishSentence = ({
+  englishSentence,
+  germanSentence,
+  correctWord,
+  englishCorrectWord,
+  clickedWord,
+  popupState,
+}) => {
   return (
     <>
       <div className="englishWrapper">
@@ -11,7 +18,7 @@ const EnglishSentence = ({ englishSentence, germanSentence, correctWord, english
           {englishSentence &&
             englishSentence.map((element) => (
               <span
-                className={`${element === englishCorrectWord ? "color" : ""}`}
+                className={`${element === englishCorrectWord ? "color bold" : ""}`}
               >
                 {element}
               </span>
@@ -19,17 +26,20 @@ const EnglishSentence = ({ englishSentence, germanSentence, correctWord, english
         </p>
       </div>
       <div className="germanWrapper">
-          {germanSentence &&
-            germanSentence.map((element, index) =>
-              element === correctWord ? (
-                <WordPlaceholder clickedWord={clickedWord}/>
-              ) : (
-                <Tooltip
-                  germanWord={element}
-                  englishWord={englishSentence[index]}
-                />
-              )
-            )}
+        {germanSentence &&
+          germanSentence.map((element, index) =>
+            element === correctWord ? (
+              <WordPlaceholder
+                clickedWord={clickedWord}
+                popupState={popupState}
+              />
+            ) : (
+              <Tooltip
+                germanWord={element}
+                englishWord={englishSentence[index]}
+              />
+            )
+          )}
       </div>
     </>
   );

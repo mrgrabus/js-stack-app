@@ -66,6 +66,7 @@ const Home = () => {
             correctWord={sentences[currentSentence]?.correctWord}
             englishCorrectWord={sentences[currentSentence]?.englishCorrectWord}
             clickedWord={clickedWord}
+            popupState={popupState}
           />
           <SuggestedWords
             className="mt-40"

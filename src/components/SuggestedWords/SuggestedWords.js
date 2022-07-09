@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./SuggestedWords.css";
 
 const SuggestedWords = ({ words, setClickedWord, clickedWord }) => {

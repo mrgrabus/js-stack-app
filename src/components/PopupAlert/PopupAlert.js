@@ -2,11 +2,17 @@ import flag from "../../assets/images/flag.svg";
 import "./PopupAlert.css";
 
 const PopupAlert = ({ correctWord, success, continueHandler }) => {
-  console.log(success)
+  console.log(success);
   return (
-    <div className={`popup ${success !== true ? "red-bg" : "blue-bg"}`}>
+    <div className={`popup animate__animated animate__fadeInUpBig animate__faster ${success !== true ? "red-bg" : "blue-bg"}`}>
       <div className="popup-info">
-        {success == true ? <p>Great Job!</p> : <p>Answer: {correctWord}</p>}
+        {success === true ? (
+          <p>Great Job!</p>
+        ) : (
+          <p>
+            Answer: <span>{correctWord}</span>
+          </p>
+        )}
         <img src={flag} alt="flag" className="white-filter" />
       </div>
       <button

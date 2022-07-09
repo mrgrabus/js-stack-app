@@ -41,6 +41,8 @@
   justify-content: center;
   align-items: center;
   margin: 0 auto;
+  font-size: 18px;
+  font-weight: 700;
 }
 .popup-info {
   display: flex;
@@ -48,4 +50,11 @@
   width: 85%;
   margin: 0 auto;
   color: #fff;
+}
+.popup-info p {
+  font-weight: 700;
+  font-size: 18px;
+}
+.popup-info p span {
+  font-weight: 600;
 }
