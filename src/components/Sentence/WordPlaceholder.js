@@ -1,6 +1,6 @@
 import "./WordPlaceholder.css";
 
-const WordPlaceholder = ({ clickedWord, popupState }) => {
+const WordPlaceholder = ({ clickedWord, setClickedWord, popupState }) => {
   return (
     <div
       className={`${
@@ -13,7 +13,7 @@ const WordPlaceholder = ({ clickedWord, popupState }) => {
           : "red-bg text-white")
       }`}
     >
-      <p>{clickedWord}</p>
+      <p onClick={() => {setClickedWord("")}}>{clickedWord}</p>
     </div>
   );
 };

@@ -6,6 +6,7 @@ import BackButton from "../../components/BackButton/BackButton";
 import SuggestedWords from "../../components/SuggestedWords/SuggestedWords";
 import ActionButton from "../../components/ActionButton/ActionButton";
 import PopupAlert from "../../components/PopupAlert/PopupAlert";
+import shuffle from "shuffle-array";
 
 const Home = () => {
   const ref = firebase.firestore().collection("sentences");
@@ -36,14 +37,15 @@ const Home = () => {
 
   const backAction = () => {
     setCurrentSentence(currentSentence - 1);
-  }
+  };
+
   const getData = () => {
     ref.onSnapshot((querySnapshot) => {
       const items = [];
       querySnapshot.forEach((doc) => {
         items.push(doc.data());
       });
-      setSentences(items);
+      setSentences(shuffle(items));
     });
   };
 
@@ -55,7 +57,7 @@ const Home = () => {
     <>
       <div className="main-wrapper">
         <div className="top-panel">
-          {currentSentence !== 0 && <BackButton backAction={backAction}/>}
+          {currentSentence !== 0 && <BackButton backAction={backAction} />}
           <ProgressBar width={successfullyGuessed} />
         </div>
         <div className="main-panel">
@@ -66,13 +68,14 @@ const Home = () => {
             correctWord={sentences[currentSentence]?.correctWord}
             englishCorrectWord={sentences[currentSentence]?.englishCorrectWord}
             clickedWord={clickedWord}
+            setClickedWord={setClickedWord}
             popupState={popupState}
           />
           <SuggestedWords
             className="mt-40"
             words={sentences[currentSentence]?.suggestedWords}
-            clickedWord={clickedWord}
             setClickedWord={setClickedWord}
+            clickedWord={clickedWord}
           />
           <ActionButton clickedWord={clickedWord} checkAnswer={checkAnswer} />
         </div>

@@ -9,28 +9,30 @@ const EnglishSentence = ({
   correctWord,
   englishCorrectWord,
   clickedWord,
+  setClickedWord,
   popupState,
 }) => {
   return (
     <>
       <div className="englishWrapper">
-        <p>
-          {englishSentence &&
-            englishSentence.map((element) => (
-              <span
-                className={`${element === englishCorrectWord ? "color bold" : ""}`}
-              >
-                {element}
-              </span>
-            ))}
-        </p>
+        {englishSentence &&
+          englishSentence.map((element) => (
+            <p
+              className={`${
+                element === englishCorrectWord ? "color bold" : ""
+              }`}
+            >
+              {element}
+            </p>
+          ))}
       </div>
-      <div className="germanWrapper">
+      <div className="germanWrapper mt-20">
         {germanSentence &&
           germanSentence.map((element, index) =>
             element === correctWord ? (
               <WordPlaceholder
                 clickedWord={clickedWord}
+                setClickedWord={setClickedWord}
                 popupState={popupState}
               />
             ) : (

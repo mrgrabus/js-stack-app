@@ -6,9 +6,20 @@
 }
 .englishWrapper {
   display: flex;
+  flex-wrap: wrap;
   word-wrap: break-word;
   overflow-wrap: break-word;
   white-space: normal;
   hyphens: auto;
   justify-content: center;
+}
+
+.englishWrapper p {
+  font-size: 30px;
+  margin-top: 5px;
+  margin-bottom: 0;
+  margin-right: 10px;
+}
+.englishWrapper p:last-child {
+  margin-right: 0;
 }
