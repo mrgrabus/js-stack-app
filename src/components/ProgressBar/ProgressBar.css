@@ -1,0 +1,14 @@
+.progressWrapper{
+    width: 200px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 25px;
+    overflow: hidden;
+    padding: 4px;
+  }
+  
+  .bar{
+    height: 100%;
+    background-color: rgba(0, 234, 255, 0.864);
+    border-radius: 25px;
+  }
