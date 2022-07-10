@@ -11,16 +11,18 @@ const EnglishSentence = ({
   clickedWord,
   setClickedWord,
   popupState,
+  currentSentence,
 }) => {
   return (
     <>
       <div className="englishWrapper">
         {englishSentence &&
-          englishSentence.map((element) => (
+          englishSentence.map((element, index) => (
             <p
               className={`${
                 element === englishCorrectWord ? "color bold" : ""
               }`}
+              key={index}
             >
               {element}
             </p>
@@ -34,11 +36,14 @@ const EnglishSentence = ({
                 clickedWord={clickedWord}
                 setClickedWord={setClickedWord}
                 popupState={popupState}
+                currentSentence={currentSentence}
+                key={index}
               />
             ) : (
               <Tooltip
                 germanWord={element}
                 englishWord={englishSentence[index]}
+                key={index}
               />
             )
           )}

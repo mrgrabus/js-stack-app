@@ -1,10 +1,23 @@
 import "./WordPlaceholder.css";
 
-const WordPlaceholder = ({ clickedWord, setClickedWord, popupState }) => {
+const WordPlaceholder = ({ clickedWord, setClickedWord, popupState, currentSentence}) => {
+  const clickHandler = () => {
+    const temp = [];
+    clickedWord.map((item, index) => {
+      if(index === currentSentence) {
+        temp.push({ value: ""});
+      }
+      else {
+        temp.push(item);
+      }
+      return 1;
+    })
+    setClickedWord(temp);
+  } 
   return (
     <div
       className={`${
-        clickedWord !== "" ? "word-placeholder" : "placeholder-wrapper"
+        clickedWord[currentSentence].value !== "" ? "word-placeholder" : "placeholder-wrapper"
       }
       ${
         popupState.visible === true &&
@@ -13,7 +26,7 @@ const WordPlaceholder = ({ clickedWord, setClickedWord, popupState }) => {
           : "red-bg text-white")
       }`}
     >
-      <p onClick={() => {setClickedWord("")}}>{clickedWord}</p>
+      <p onClick={clickHandler}>{clickedWord[currentSentence].value}</p>
     </div>
   );
 };

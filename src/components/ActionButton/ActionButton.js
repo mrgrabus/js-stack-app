@@ -1,21 +1,38 @@
 import "./ActionButton.css";
 
-const ActionButton = ({ clickedWord, checkAnswer, continueHandler }) => {
+const ActionButton = ({
+  clickedWord,
+  checkAnswer,
+  continueHandler,
+  currentSentence,
+  backContinue,
+}) => {
   const checkAnswerHandler = () => {
-      if(clickedWord === "") {
-        continueHandler();
-      } else {
-          checkAnswer();
-      }  
+    if (clickedWord[currentSentence]?.value === "") {
+      continueHandler();
+    } else {
+      checkAnswer();
+    }
+  };
+  const previousContinueHandler = () => {
+    backContinue();
   };
   return (
     <div className="action-wrapper">
       <div
-        className={`action-button ${clickedWord !== "" ? "check-answer" : ""}`}
+        className={`action-button ${
+          clickedWord[currentSentence]?.value !== "" ? "check-answer" : ""
+        }`}
       >
-        <button onClick={() => checkAnswerHandler()}>
-          {clickedWord !== "" ? "CHECK ANSWER" : "CONTINUE"}
-        </button>
+        {currentSentence === clickedWord.length-1 ? (
+          <button onClick={() => checkAnswerHandler()}>
+            {clickedWord[currentSentence]?.value !== ""
+              ? "CHECK ANSWER"
+              : "CONTINUE"}
+          </button>
+        ) : (
+          <button onClick={() => previousContinueHandler()}>CONTINUE</button>
+        )}
       </div>
     </div>
   );

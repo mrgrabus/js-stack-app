@@ -2,7 +2,6 @@ import flag from "../../assets/images/flag.svg";
 import "./PopupAlert.css";
 
 const PopupAlert = ({ correctWord, success, continueHandler }) => {
-  console.log(success);
   return (
     <div className={`popup animate__animated animate__fadeInUpBig animate__faster ${success !== true ? "red-bg" : "blue-bg"}`}>
       <div className="popup-info">
