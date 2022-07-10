@@ -1,15 +1,13 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
 
-// NAPOMENA: U stvarnom okruzenju ovaj config bi povlacio keyeve iz .env datoteke (process.env.API_KEY)
-// ali da bi lakse bilo konfigurisati projekat drugoj strani, keyevi su direktno upisani
 const firebaseConfig = {
-  apiKey: "AIzaSyCtOTA3sEP2l0dp0vE61TAwCxQm0Vht_Ps",
-  authDomain: "js-stack-app.firebaseapp.com",
+  apiKey: process.env.API_KEY,
+  authDomain: process.env.AUTH_DOMAIN,
   projectId: "js-stack-app",
-  storageBucket: "js-stack-app.appspot.com",
-  messagingSenderId: "788627565572",
-  appId: "1:788627565572:web:8a269c6e9a9f2ab52b1951"
+  storageBucket: process.env.STORAGE_BUCKET,
+  messagingSenderId: process.env.MESSAGING_SENDER_ID,
+  appId: process.env.APP_ID,
 };
 
 try {

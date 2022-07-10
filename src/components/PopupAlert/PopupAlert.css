@@ -27,7 +27,6 @@
 }
 .blue-text {
   color: rgb(107, 219, 232) !important;
-
 }
 .popup button {
   all: unset;
@@ -57,4 +56,16 @@
 }
 .popup-info p span {
   font-weight: 600;
+}
+
+@media screen and (min-width: 768px) {
+  .popup {
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    width: 600px;
+    padding: 0 10px;
+  }
 }

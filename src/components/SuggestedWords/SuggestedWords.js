@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import "./SuggestedWords.css";
 
 const SuggestedWords = ({ words, setClickedWord, clickedWord, currentSentence, popupState}) => {
@@ -15,9 +14,6 @@ const SuggestedWords = ({ words, setClickedWord, clickedWord, currentSentence, p
       })
       setClickedWord(temp);
   };
-  useEffect(() => {
-    console.log(clickedWord.length)
-  });
   return (
     <>
       <div className="words-wrapper">
@@ -26,6 +22,7 @@ const SuggestedWords = ({ words, setClickedWord, clickedWord, currentSentence, p
             <div
               className={`${clickedWord[currentSentence].value !== word ? "word" : "blank-word"} ${popupState === true ? "thirty-transparent" : ""}`}
               onClick={() => handleOnClick(word)}
+              key={word}
             >
               {word}
             </div>
